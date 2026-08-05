@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --panel: rgba(255, 255, 255, 0.86);
+  --border: rgba(148, 163, 184, 0.18);
+  --font-sans-stack: "Segoe UI", "Aptos", "Trebuchet MS", sans-serif;
+  --font-mono-stack: "Cascadia Code", "Consolas", "Courier New", monospace;
+}
+
+:root.dark,
+:root[data-theme="dark"] {
+  --background: #020617;
+  --foreground: #e2e8f0;
+  --panel: rgba(2, 6, 23, 0.78);
+  --border: rgba(51, 65, 85, 0.55);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans-stack);
+  --font-mono: var(--font-mono-stack);
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans-stack);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(14, 165, 233, 0.22);
+}
