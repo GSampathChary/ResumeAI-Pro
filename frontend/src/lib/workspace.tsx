@@ -43,6 +43,7 @@ export interface ResumeWorkspaceActions {
   }) => Promise<void>;
   refreshAnalysis: (overrides?: { jobDescription?: string; companyName?: string; role?: string; targetDomain?: string; linkedinId?: string }) => Promise<void>;
   selectHistoryAnalysis: (id: string) => void;
+  exportWorkspaceSnapshot: () => void;
   resetWorkspace: () => void;
 }
 
@@ -289,6 +290,18 @@ export function ResumeWorkspaceProvider({ children }: { children: ReactNode }) {
           analysis: selected.analysis,
           activeHistoryId: selected.id,
         }));
+      },
+      exportWorkspaceSnapshot: () => {
+        const snapshot = stateRef.current;
+        const blob = new Blob([JSON.stringify(snapshot, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.download = `resumeai-workspace-${snapshot.fileName.replace(/\.[^.]+$/, "") || "snapshot"}.json`;
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+        URL.revokeObjectURL(url);
       },
       resetWorkspace: () => setState(buildInitialState()),
     };

@@ -52,7 +52,10 @@ export default function ReportPage() {
           <p>Overall ATS score: {workspace.analysis.ats.overall_score}</p>
           <p>Questions included: {workspace.analysis.interview.technical.length + workspace.analysis.interview.behavioral.length + workspace.analysis.interview.hr.length}</p>
           <p>Target domain: {workspace.targetDomain || "Not set"}</p>
-          <ActionButton onClick={downloadReport}>Download PDF Report</ActionButton>
+          <div className="flex flex-wrap gap-3">
+            <ActionButton onClick={downloadReport}>Download PDF Report</ActionButton>
+            <ActionButton secondary onClick={workspace.exportWorkspaceSnapshot}>Export Workspace Snapshot</ActionButton>
+          </div>
           <p>{status}</p>
         </div>
       </SectionCard>
@@ -66,6 +69,7 @@ export default function ReportPage() {
             "Interview questions and preparation ideas",
             "Learning roadmap and next-step guidance",
             "LinkedIn-ready profile details and domain focus",
+            "Portable workspace snapshot for sharing or backup",
           ].map((item) => (
             <div key={item} className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-950">
               {item}

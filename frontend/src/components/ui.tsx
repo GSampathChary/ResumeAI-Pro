@@ -12,7 +12,7 @@ export function SectionCard({
   className?: string;
   }) {
   return (
-    <section className={`rounded-[1.75rem] border border-white/20 bg-white/85 p-5 shadow-[0_28px_90px_-44px_rgba(15,23,42,0.38)] ring-1 ring-white/40 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-950/75 dark:ring-slate-900/60 ${className}`}>
+    <section className={`rounded-[1.75rem] border border-sky-100 bg-white/90 p-5 shadow-[0_28px_90px_-44px_rgba(15,23,42,0.18)] ring-1 ring-sky-50 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-950/75 dark:ring-slate-900/60 ${className}`}>
       <div className="mb-4 flex items-start justify-between gap-4">
         <div>
           <h2 className="text-lg font-semibold text-slate-950 dark:text-white">{title}</h2>
@@ -34,7 +34,7 @@ export function StatCard({
   hint?: string;
   }) {
   return (
-    <div className="rounded-[1.75rem] border border-white/20 bg-white/85 p-4 shadow-[0_18px_50px_-34px_rgba(15,23,42,0.3)] ring-1 ring-white/40 dark:border-slate-800 dark:bg-slate-950/75 dark:ring-slate-900/60">
+    <div className="rounded-[1.75rem] border border-sky-100 bg-white/90 p-4 shadow-[0_18px_50px_-34px_rgba(15,23,42,0.16)] ring-1 ring-sky-50 dark:border-slate-800 dark:bg-slate-950/75 dark:ring-slate-900/60">
       <p className="text-sm text-slate-500 dark:text-slate-400">{label}</p>
       <p className="mt-2 text-2xl font-semibold text-slate-950 dark:text-white">{value}</p>
       {hint ? <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">{hint}</p> : null}
@@ -78,7 +78,7 @@ export function ProgressRing({
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="rgba(148,163,184,0.18)"
+          stroke="rgba(125, 146, 173, 0.18)"
           strokeWidth={strokeWidth}
         />
         <circle
@@ -94,8 +94,8 @@ export function ProgressRing({
         />
         <defs>
           <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#1d4ed8" />
-            <stop offset="100%" stopColor="#38bdf8" />
+            <stop offset="0%" stopColor="#2563eb" />
+            <stop offset="100%" stopColor="#fb7185" />
           </linearGradient>
         </defs>
       </svg>
@@ -122,7 +122,7 @@ export function VerticalBars({
           </div>
           <div className="h-2 rounded-full bg-slate-200 dark:bg-slate-800">
             <div
-              className="h-2 rounded-full bg-gradient-to-r from-blue-600 to-sky-400"
+              className="h-2 rounded-full bg-gradient-to-r from-blue-600 via-sky-500 to-rose-400"
               style={{ width: `${Math.min(100, Math.max(0, item.value))}%` }}
             />
           </div>
@@ -134,7 +134,7 @@ export function VerticalBars({
 
 export function CodeBlock({ value }: { value: string }) {
   return (
-    <pre className="overflow-x-auto rounded-[1.25rem] border border-slate-200 bg-slate-950 px-4 py-3 text-sm text-slate-100 shadow-[0_12px_35px_-22px_rgba(15,23,42,0.9)] dark:border-slate-800">
+    <pre className="overflow-x-auto rounded-[1.25rem] border border-sky-100 bg-slate-900 px-4 py-3 text-sm text-slate-100 shadow-[0_12px_35px_-22px_rgba(15,23,42,0.75)] dark:border-slate-800">
       <code>{value}</code>
     </pre>
   );
@@ -161,7 +161,7 @@ export function Input({
         value={value}
         onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition focus:border-sky-400 focus:ring-4 focus:ring-sky-100 dark:border-slate-800 dark:bg-slate-950 dark:text-white dark:focus:ring-sky-500/15"
+        className="w-full rounded-2xl border border-sky-100 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:border-slate-800 dark:bg-slate-950 dark:text-white dark:focus:ring-sky-500/15"
       />
     </label>
   );
@@ -188,7 +188,7 @@ export function TextArea({
         onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
         rows={rows}
-        className="w-full rounded-3xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition focus:border-sky-400 focus:ring-4 focus:ring-sky-100 dark:border-slate-800 dark:bg-slate-950 dark:text-white dark:focus:ring-sky-500/15"
+        className="w-full rounded-3xl border border-sky-100 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100 dark:border-slate-800 dark:bg-slate-950 dark:text-white dark:focus:ring-sky-500/15"
       />
     </label>
   );
@@ -208,8 +208,8 @@ export function ActionButton({
   const base =
     "inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium transition focus:outline-none focus:ring-4";
   const variant = secondary
-    ? "border border-slate-200 bg-white text-slate-950 hover:border-slate-300 focus:ring-slate-200 dark:border-slate-800 dark:bg-slate-950 dark:text-white dark:focus:ring-slate-800"
-    : "bg-gradient-to-r from-blue-700 to-sky-500 text-white shadow-lg shadow-blue-900/15 hover:brightness-110 focus:ring-sky-200";
+    ? "border border-blue-200 bg-white text-slate-950 hover:border-blue-300 hover:bg-blue-50 focus:ring-blue-200 dark:border-slate-800 dark:bg-slate-950 dark:text-white dark:focus:ring-slate-800"
+    : "bg-gradient-to-r from-blue-700 via-sky-500 to-rose-500 text-white shadow-lg shadow-blue-900/15 hover:brightness-110 focus:ring-blue-200";
   return (
     <button type={type} onClick={onClick} className={`${base} ${variant}`}>
       {children}

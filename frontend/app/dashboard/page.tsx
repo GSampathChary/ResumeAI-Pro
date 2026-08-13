@@ -1,6 +1,6 @@
 "use client";
 
-import { PillList, ProgressRing, SectionCard, StatCard, VerticalBars } from "@/src/components/ui";
+import { ActionButton, PillList, ProgressRing, SectionCard, StatCard, VerticalBars } from "@/src/components/ui";
 import type { ATSBreakdown } from "@/src/lib/types";
 import { useResumeWorkspace } from "@/src/lib/workspace";
 
@@ -17,6 +17,8 @@ export default function DashboardPage() {
   const history = workspace.history;
   const previousScore = history[1]?.analysis.ats.overall_score;
   const scoreDelta = typeof previousScore === "number" ? analysis.ats.overall_score - previousScore : null;
+  const topJob = analysis.job_match.related_jobs[0];
+  const focusSkill = analysis.skills_gap.priority_skills[0] ?? analysis.profile.skills[0] ?? "target skills";
 
   const stats = [
     { label: "Resume Uploaded", value: workspace.fileName, hint: workspace.uploadedAt ? new Date(workspace.uploadedAt).toLocaleString() : "No upload yet" },
@@ -33,6 +35,24 @@ export default function DashboardPage() {
         {stats.map((item) => (
           <StatCard key={item.label} label={item.label} value={item.value} hint={item.hint} />
         ))}
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-3">
+        <StatCard
+          label="Resume Pulse"
+          value={analysis.ats.overall_score >= 80 ? "Strong" : analysis.ats.overall_score >= 60 ? "Balanced" : "Needs work"}
+          hint="A quick health label for the active resume"
+        />
+        <StatCard
+          label="Main Focus"
+          value={focusSkill}
+          hint="The next skill or gap to address"
+        />
+        <StatCard
+          label="Top Job Fit"
+          value={topJob ? `${topJob.fit_score}%` : "N/A"}
+          hint={topJob ? topJob.title : "No related jobs detected yet"}
+        />
       </div>
 
       <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
@@ -70,11 +90,22 @@ export default function DashboardPage() {
       <div className="grid gap-6 xl:grid-cols-2">
         <SectionCard title="Quick actions" subtitle="Jump straight into the main workflows.">
           <div className="grid gap-3 sm:grid-cols-2">
-            {["Upload a new resume", "Run ATS analysis", "Generate interview questions", "Build a cover letter"].map((item) => (
+            {[
+              "Upload a new resume",
+              "Run ATS analysis",
+              "Generate interview questions",
+              "Build a cover letter",
+            ].map((item) => (
               <div key={item} className="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm dark:border-slate-800 dark:bg-slate-950">
                 {item}
               </div>
             ))}
+          </div>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <ActionButton onClick={workspace.exportWorkspaceSnapshot}>Download Workspace Snapshot</ActionButton>
+            <ActionButton secondary onClick={() => void workspace.refreshAnalysis()}>
+              Refresh Current Analysis
+            </ActionButton>
           </div>
         </SectionCard>
         <SectionCard title="Related jobs" subtitle="Roles that align with the active resume and domain.">

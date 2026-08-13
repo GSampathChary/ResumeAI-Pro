@@ -29,38 +29,38 @@ export default function Home() {
 
   return (
     <div className="grid gap-6">
-      <section className="overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(15,23,42,0.98),rgba(29,78,216,0.92),rgba(14,165,233,0.92))] p-8 text-white shadow-[0_40px_100px_-50px_rgba(2,6,23,0.9)] lg:p-12">
+      <section className="overflow-hidden rounded-[2rem] border border-sky-100 bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(239,246,255,0.98),rgba(254,242,242,0.92))] p-8 text-slate-950 shadow-[0_40px_100px_-50px_rgba(59,130,246,0.24)] lg:p-12">
         <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div>
-            <p className="text-xs uppercase tracking-[0.32em] text-sky-200">AI-powered career workspace</p>
+            <p className="text-xs uppercase tracking-[0.32em] text-blue-600">AI-powered career workspace</p>
             <h1 className="mt-4 max-w-3xl text-4xl font-semibold leading-tight lg:text-6xl">
               Turn one resume into a complete career strategy.
             </h1>
-            <p className="mt-5 max-w-2xl text-base leading-8 text-sky-100/90 lg:text-lg">
+            <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600 lg:text-lg">
               Upload a resume, set your target domain, and every page updates from the same live source of truth: ATS analysis, interview prep, LinkedIn writing, cover letters, related jobs, and a downloadable report.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/upload" className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:scale-[1.01]">
+              <Link href="/upload" className="rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:scale-[1.01]">
                 Upload Resume
               </Link>
-              <Link href="/dashboard" className="rounded-full border border-white/25 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
+              <Link href="/dashboard" className="rounded-full border border-blue-200 px-5 py-3 text-sm font-semibold text-blue-700 transition hover:bg-blue-50">
                 Open Dashboard
               </Link>
-              <Link href="/report" className="rounded-full border border-white/25 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
+              <Link href="/report" className="rounded-full border border-rose-200 px-5 py-3 text-sm font-semibold text-rose-700 transition hover:bg-rose-50">
                 Download Report
               </Link>
             </div>
           </div>
-          <div className="rounded-[2rem] border border-white/15 bg-white/10 p-5 backdrop-blur">
-            <p className="text-xs uppercase tracking-[0.3em] text-sky-100">Current workspace</p>
+          <div className="rounded-[2rem] border border-sky-100 bg-white/85 p-5 backdrop-blur">
+            <p className="text-xs uppercase tracking-[0.3em] text-blue-600">Current workspace</p>
             <div className="mt-4 grid gap-3">
               {stats.map((item) => (
-                <div key={item.label} className="rounded-2xl bg-white/10 p-4">
+                <div key={item.label} className="rounded-2xl bg-sky-50 p-4">
                   <div className="flex items-center justify-between gap-4">
-                    <span className="text-sm text-sky-100/80">{item.label}</span>
-                    <span className="text-lg font-semibold">{item.value}</span>
+                    <span className="text-sm text-slate-600">{item.label}</span>
+                    <span className="text-lg font-semibold text-slate-950">{item.value}</span>
                   </div>
-                  <p className="mt-2 text-xs text-sky-100/70">{item.hint}</p>
+                  <p className="mt-2 text-xs text-slate-500">{item.hint}</p>
                 </div>
               ))}
             </div>
